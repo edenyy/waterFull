@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<link rel="stylesheet" type="text/css" href="./1.css">
+
+
+  
+  <title>JS Bin</title>
+</head>
+<body>
+<div class='content'>
+  <div class="item h1">1</div>
+  <div class="item h4">2</div>
+  <div class="item h2">3</div>
+  <div class="item h5">4</div>
+  <div class="item h3">5</div>
+  <div class="item h4">6</div>
+  <div class="item h1">7</div>
+  <div class="item h3">8</div>
+  <div class="item h2">9</div>
+  <div class="item h5">10</div>
+  <div class="item h2">11</div>
+  <div class="item h4">12</div>
+  <div class="item h3">13</div>
+  <div class="item h5">14</div>
+  <div class="item h4">15</div>
+  <div class="item h2">16</div>
+  <div class="item h5">17</div>
+  <div class="item h4">18</div>
+</div>
+<script> 
+function waterFull(){
+  var colLength = parseInt($('.content').width()/$('.item').width());
+            var itemArr = [];
+            for(var i = 0;i<colLength;i++){
+                itemArr[i] = 0;
+            }
+
+            $('.item').each(function () {
+                //得到数组的最小值
+                var minValue = Math.min.apply(null,itemArr);
+                //得到最小值的下标
+                var minIndex = itemArr.indexOf(minValue);
+                $(this).css({
+                    top:itemArr[minIndex],
+                    left:$(this).outerWidth(true)*minIndex
+                })
+                itemArr[minIndex]+=$(this).outerHeight(true)
+            })
+}
+waterFull()
+$(window).resize(function(){
+  waterFull()
+})
+</script>
+</body>
+</html>
